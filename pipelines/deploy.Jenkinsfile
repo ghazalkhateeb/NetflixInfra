@@ -5,7 +5,7 @@ pipeline {
 
     parameters {
         string(name: 'SERVICE_NAME', defaultValue: '', description: '')
-        string(name: 'IMAGE_FULL_NAME_PARAM', defaultValue: '', description: '')
+        string(name: 'IMAGE_FULL_NAME', defaultValue: '', description: '')
     }
     environment {
         GITHUB_TOKEN = credentials('fe1ad36c-199b-49db-893a-38b60eb82288')
@@ -20,7 +20,7 @@ pipeline {
 
                       cd $SERVICE_NAME
                       # Replace the image name in the deployment YAML file
-                      sed -i "s|image:.*|image: ${IMAGE_FULL_NAME_PARAM}|g" k8s/deploymentFront.yaml
+                      sed -i "s|image:.*|image: ${IMAGE_FULL_NAME}|g" k8s/deploymentFront.yaml
 
                       # Print the updated deployment YAML to verify the change
                       echo "Updated deploymentFront.yaml:"
@@ -36,7 +36,7 @@ pipeline {
 
 
                       git add k8s/NetflixFronted/deploymentFront.yaml
-                      git commit -m "Update deployment image to ${IMAGE_FULL_NAME_PARAM}"
+                      git commit -m "Update deployment image to ${IMAGE_FULL_NAME}"
                       git push origin HEAD:main
                     '''
                 }
