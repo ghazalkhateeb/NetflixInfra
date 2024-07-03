@@ -25,6 +25,7 @@ pipeline {
 
                       # Print the updated deployment YAML to verify the change
                       echo "Updated deploymentFront.yaml:"
+                      cat deploymentFront.yaml
 
                     '''
 
