@@ -25,15 +25,15 @@ pipeline {
 
                       # Print the updated deployment YAML to verify the change
                       echo "Updated deploymentFront.yaml:"
-                      #cat k8s/NetflixFrontend/deploymentFront.yaml
+
                     '''
 
                     // Commit the changes
                     sh '''
                       git config --global user.email "jenkins@example.com"
                       git config --global user.name "Jenkins"
-                      TOKEN = "${GITHUB_TOKEN_PSW}"
-                      git remote set-url origin https://${TOKEN}@github.com/ghazalkhateeb/NetflixInfra.git
+
+                      git remote set-url origin https://${GITHUB_TOKEN_PSW}@github.com/ghazalkhateeb/NetflixInfra.git
 
 
                       git add deploymentFront.yaml
