@@ -24,7 +24,7 @@ pipeline {
 
                       # Print the updated deployment YAML to verify the change
                       echo "Updated deploymentFront.yaml:"
-                      cat k8s/NetflixFronted/deploymentFront.yaml
+                      #cat k8s/NetflixFronted/deploymentFront.yaml
                     '''
 
                     // Commit the changes
