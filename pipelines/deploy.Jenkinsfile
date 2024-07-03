@@ -35,6 +35,7 @@ pipeline {
 
                       git add deploymentFront.yaml
                       git commit -m "Update deployment image to ${IMAGE_FULL_NAME_PARAM}"
+                      git checkout main
                       git push origin main
 
                     '''
