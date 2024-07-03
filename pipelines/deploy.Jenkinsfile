@@ -27,10 +27,6 @@ pipeline {
                       echo "Updated deploymentFront.yaml:"
                       cat deploymentFront.yaml
 
-                    '''
-
-                    // Commit the changes
-                    sh '''
                       git config --global user.email "jenkins@example.com"
                       git config --global user.name "Jenkins"
 
@@ -40,7 +36,10 @@ pipeline {
                       git add deploymentFront.yaml
                       git commit -m "Update deployment image to ${IMAGE_FULL_NAME_PARAM}"
                       git push origin main
+
                     '''
+
+
                 }
             }
         }
