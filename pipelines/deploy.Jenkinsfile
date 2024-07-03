@@ -19,6 +19,7 @@ pipeline {
                     sh '''
                       cd k8s
                       cd $SERVICE_NAME
+                      git checkout main
                       # Replace the image name in the deployment YAML file
                       sed -i "s|image:.*|image: ${IMAGE_FULL_NAME_PARAM}|g" deploymentFront.yaml
 
@@ -35,7 +36,7 @@ pipeline {
 
                       git add deploymentFront.yaml
                       git commit -m "Update deployment image to ${IMAGE_FULL_NAME_PARAM}"
-                      git checkout main
+
                       git push origin main
 
                     '''
