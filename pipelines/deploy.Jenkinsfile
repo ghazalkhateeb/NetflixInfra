@@ -25,7 +25,7 @@ pipeline {
 
                       # Print the updated deployment YAML to verify the change
                       echo "Updated deploymentFront.yaml:"
-                      cat k8s/NetflixFrontend/deploymentFront.yaml
+                      #cat k8s/NetflixFrontend/deploymentFront.yaml
                     '''
 
                     // Commit the changes
@@ -36,7 +36,7 @@ pipeline {
                       git remote set-url origin https://${TOKEN}@github.com/ghazalkhateeb/NetflixInfra.git
 
 
-                      git add k8s/NetflixFronted/deploymentFront.yaml
+                      git add deploymentFront.yaml
                       git commit -m "Update deployment image to ${IMAGE_FULL_NAME_PARAM}"
                       git push origin main
                     '''
