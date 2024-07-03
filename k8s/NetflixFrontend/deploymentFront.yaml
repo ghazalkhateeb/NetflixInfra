@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: ghazalkhateeb/netflixfrontend_image:0.0.3
+        image: ghazalkhateeb/netflix-app:v1.0.42
         env:
           - name: MOVIE_CATALOG_SERVICE
             value: http://service-netflix-movie-catalog:8080
