@@ -20,11 +20,11 @@ pipeline {
                       cd k8s
                       cd $SERVICE_NAME
                       # Replace the image name in the deployment YAML file
-                      sed -i "s|image:.*|image: ${IMAGE_FULL_NAME_PARAM}|g" k8s/NetflixFronted/deploymentFront.yaml
+                      sed -i "s|image:.*|image: ${IMAGE_FULL_NAME_PARAM}|g" k8s/NetflixFrontend/deploymentFront.yaml
 
                       # Print the updated deployment YAML to verify the change
                       echo "Updated deploymentFront.yaml:"
-                      #cat k8s/NetflixFronted/deploymentFront.yaml
+                      cat k8s/NetflixFrontend/deploymentFront.yaml
                     '''
 
                     // Commit the changes
