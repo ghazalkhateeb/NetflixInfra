@@ -1,0 +1,45 @@
+#k8s/service-demo.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-netflix-movie-front
+spec:
+  selector:
+    app: netflix-frontend
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+
+---
+
+
+# k8s/deployment-demo.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflix-frontend
+  labels:
+    app: netflix-frontend
+spec:
+
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: netflix-frontend
+  template:
+    metadata:
+        labels:
+          app: netflix-frontend
+    spec:
+      containers:
+      - name: server
+        image: ghazalkhateeb/netflixfrontend_image:0.0.3
+        env:
+          - name: MOVIE_CATALOG_SERVICE
+            value: http://service-netflix-movie-catalog:8080
+          - name: REDIS_URL
+            value: service-netflix-redis:6379

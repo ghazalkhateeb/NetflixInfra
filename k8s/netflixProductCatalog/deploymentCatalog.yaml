@@ -1,0 +1,48 @@
+#k8s/service-demo.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-netflix-movie-catalog
+spec:
+  selector:
+    app: netflix-movie-catalog
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+
+
+# k8s/deployment-demo.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflix-movie-catalog
+  labels:
+    app: netflix-movie-catalog
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netflix-movie-catalog
+  template:
+    metadata:
+        labels:
+          app: netflix-movie-catalog
+    spec:
+      containers:
+      - name: server
+        image: ghazalkhateeb/netflix_movie_catalog:0.0.1
+        livenessProbe:
+          initialDelaySeconds: 10
+          httpGet:
+            path: "/status"
+            port: 8080
+        readinessProbe:
+          initialDelaySeconds: 10
+          httpGet:
+            path: "/status"
+            port: 8080
