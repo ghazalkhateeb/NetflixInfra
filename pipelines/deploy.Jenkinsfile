@@ -17,7 +17,7 @@ pipeline {
                 script {
                     // Update the YAML manifests with the new image name
                     sh '''
-
+                      cd k8s
                       cd $SERVICE_NAME
                       # Replace the image name in the deployment YAML file
                       sed -i "s|image:.*|image: ${IMAGE_FULL_NAME_PARAM}|g" k8s/NetflixFronted/deploymentFront.yaml
